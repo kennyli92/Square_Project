@@ -1,9 +1,8 @@
 package com.square.square_project.employee.data
 
 import com.google.common.truth.Truth
+import com.square.square_project.EmployeeDataProvider
 import com.square.square_project.employee.data.network.FakeEmployeeApi
-import com.square.square_project.employee.model.Employee
-import com.square.square_project.employee.model.EmployeeType
 import com.square.square_project.employee.model.Employees
 import com.square.square_project.employee.model.GetEmployeesResponse
 import com.square.square_project.utils.RxTestRule
@@ -21,44 +20,9 @@ class EmployeeRepositoryTest {
   @JvmField
   val rxTestRule = RxTestRule()
 
-  private val employee1 = Employee(
-    uuid = "1",
-    fullName = "first employee",
-    emailAddress = "first@square.com",
-    biography = "",
-    photoUrlSmall = "first small url",
-    photoUrlLarge = "first large url",
-    team = "team 1",
-    employeeType = EmployeeType.FULL_TIME
-  )
-  private val employee2 = Employee(
-    uuid = "2",
-    fullName = "second employee",
-    emailAddress = "second@square.com",
-    biography = "",
-    photoUrlSmall = "second small url",
-    photoUrlLarge = "second large url",
-    team = "team 2",
-    employeeType = EmployeeType.PART_TIME
-  )
-  private val employee3 = Employee(
-    uuid = "3",
-    fullName = "third employee",
-    emailAddress = "third@square.com",
-    biography = "",
-    photoUrlSmall = "third small url",
-    photoUrlLarge = "third large url",
-    team = "team 3",
-    employeeType = EmployeeType.CONTRACTOR
-  )
-  private val employeeList = listOf(employee1, employee2, employee3)
-  private val employees = Employees(
-    employees = employeeList
-  )
-
   @Test
   fun `get employees returns 200`() {
-    val successResponse = Response.success(employees)
+    val successResponse = Response.success(EmployeeDataProvider.employees)
     val fakeEmployeeApi = FakeEmployeeApi(Single.just(Result.response(successResponse)))
     val employeeRepository = EmployeeRepositoryImpl(employeeApi = fakeEmployeeApi)
 
@@ -68,7 +32,7 @@ class EmployeeRepositoryTest {
       .assertValueCount(1)
       .assertValueAt(
         0,
-        GetEmployeesResponse.Employees(employees = employees.employees)
+        GetEmployeesResponse.Employees(employees = EmployeeDataProvider.employees.employees)
       )
   }
 
