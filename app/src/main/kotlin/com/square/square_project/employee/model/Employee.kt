@@ -22,7 +22,6 @@ data class Employee(
   val employeeType: EmployeeType
 )
 
-@JsonClass(generateAdapter = true)
 enum class EmployeeType {
   FULL_TIME,
   PART_TIME,

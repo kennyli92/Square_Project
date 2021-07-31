@@ -14,6 +14,7 @@ android {
     targetSdkVersion 30
     versionCode 1
     versionName "1.0"
+    multiDexEnabled true
 
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
   }
@@ -58,6 +59,7 @@ dependencies {
   implementation "com.jakewharton.rxbinding4:rxbinding:$rxbinding_version"
   implementation "com.jakewharton.rxbinding4:rxbinding-core:$rxbinding_version"
   implementation "com.jakewharton.rxbinding4:rxbinding-appcompat:$rxbinding_version"
+  implementation "com.jakewharton.rxbinding4:rxbinding-swiperefreshlayout:$rxbinding_version"
 
   /**
    * Android
@@ -71,6 +73,8 @@ dependencies {
   implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
   implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
   implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+
+  implementation "androidx.multidex:multidex:2.0.1"
 
   /**
    * Other

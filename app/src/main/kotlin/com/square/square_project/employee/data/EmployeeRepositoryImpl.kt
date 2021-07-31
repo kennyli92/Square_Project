@@ -13,7 +13,7 @@ class EmployeeRepositoryImpl(val employeeApi: EmployeeApi): EmployeeRepository {
         return@map when {
           responseCode == 200 && it.response()?.body() != null -> {
             GetEmployeesResponse.Employees(
-              employees = it.response()!!.body()!!
+              employees = it.response()!!.body()!!.employees
             )
           }
           it.isError && it.error() == IOException() -> {

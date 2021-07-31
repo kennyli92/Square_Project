@@ -1,12 +1,14 @@
 package com.square.square_project.employee.ui
 
 import android.util.Log
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.square.square_project.R
 import com.square.square_project.employee.data.EmployeeUseCase
 import com.square.square_project.employee.model.Employee
 import com.square.square_project.employee.model.GetEmployeesResponse
+import com.square.square_project.employee.ui.recyclerview.EmployeeItem
 import com.square.square_project.utils.SnackbarModel
 import com.square.square_project.utils.StateEvent
 import com.square.square_project.utils.Visibility
@@ -72,7 +74,7 @@ class EmployeeViewModel @Inject constructor(
       Observable.just(
         StateEvent(
           EmployeeState.ListItem(
-            employees = employees
+            employeeItems = sortAndMapEmployee(employees = employees)
           ),
           EmployeeEvent.Noop
         )
@@ -94,7 +96,7 @@ class EmployeeViewModel @Inject constructor(
             Observable.just(
               StateEvent(
                 EmployeeState.ListItem(
-                  employees = response.employees
+                  employeeItems = sortAndMapEmployee(response.employees)
                 ),
                 EmployeeEvent.Noop
               ),
@@ -165,5 +167,16 @@ class EmployeeViewModel @Inject constructor(
             EmployeeEvent.Noop
           ))
       )
+  }
+
+  @VisibleForTesting
+  internal fun sortAndMapEmployee(employees: List<Employee>): List<EmployeeItem> {
+    return employees.map {
+      EmployeeItem(
+        imageUrl = it.photoUrlSmall,
+        fullName = it.fullName,
+        team = it.team
+      )
+    }.sortedBy { it.fullName }
   }
 }
