@@ -84,9 +84,6 @@ class EmployeeViewModel @Inject constructor(
     }
   }
 
-  /**
-   * Get latest weather conditions of the present and next 5 days, and display std dev
-   */
   private fun onGetEmployees(): Observable<StateEvent<EmployeeState, EmployeeEvent>> {
     return employeeUseCase.getEmployees()
       .flatMapObservable { response ->

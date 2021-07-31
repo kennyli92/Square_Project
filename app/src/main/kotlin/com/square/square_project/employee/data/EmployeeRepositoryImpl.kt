@@ -16,7 +16,7 @@ class EmployeeRepositoryImpl(val employeeApi: EmployeeApi): EmployeeRepository {
               employees = it.response()!!.body()!!.employees
             )
           }
-          it.isError && it.error() == IOException() -> {
+          it.isError && it.error() is IOException -> {
             GetEmployeesResponse.NetworkError
           }
           responseCode == 404 -> {
