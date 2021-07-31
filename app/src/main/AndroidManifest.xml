@@ -3,13 +3,14 @@
     package="com.square.square_project">
 
     <application
+        android:name="com.square.square_project.SquareApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Square_Project">
-        <activity android:name=".MainActivity">
+        <activity android:name=".employee.EmployeeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
