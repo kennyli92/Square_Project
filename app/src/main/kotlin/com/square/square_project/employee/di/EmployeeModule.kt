@@ -1,7 +1,8 @@
 package com.square.square_project.employee.di
 
 import com.square.square_project.employee.data.EmployeeRepository
-import com.square.square_project.employee.network.EmployeeApi
+import com.square.square_project.employee.data.EmployeeUseCase
+import com.square.square_project.employee.data.network.EmployeeApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -26,5 +27,13 @@ object EmployeeModule {
     employeeApi: EmployeeApi
   ): EmployeeRepository {
     return EmployeeRepository(employeeApi = employeeApi)
+  }
+
+  @ViewModelScoped
+  @Provides
+  fun providesEmployeeUseCase(
+    employeeRepository: EmployeeRepository
+  ): EmployeeUseCase {
+    return EmployeeUseCase(employeeRepository = employeeRepository)
   }
 }

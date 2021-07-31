@@ -1,4 +1,4 @@
-package com.square.square_project.employee.network
+package com.square.square_project.employee.data.network
 
 import com.square.square_project.employee.model.GetEmployeesResponse
 import io.reactivex.rxjava3.core.Single
