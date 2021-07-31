@@ -2,7 +2,7 @@ package com.square.square_project.employee.ui
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.square.square_project.employee.data.EmployeeUseCase
+import com.square.square_project.employee.data.EmployeeUseCaseImpl
 import com.square.square_project.employee.model.Employee
 import com.square.square_project.utils.StateEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class EmployeeViewModel @Inject constructor(
-  private val employeeUseCase: EmployeeUseCase
+  private val employeeUseCase: EmployeeUseCaseImpl
 ) : ViewModel() {
   private val stateEventObs =
     PublishSubject.create<StateEvent<EmployeeState, EmployeeEvent>>().toSerialized()

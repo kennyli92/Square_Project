@@ -1,7 +1,8 @@
 package com.square.square_project.employee.data
 
-import com.square.square_project.employee.data.network.EmployeeApi
+import com.square.square_project.employee.model.GetEmployeesResponse
+import io.reactivex.rxjava3.core.Single
 
-class EmployeeRepository(val employeeApi: EmployeeApi) {
-
+interface EmployeeRepository {
+  fun getEmployees(): Single<GetEmployeesResponse>
 }
