@@ -3,6 +3,7 @@ package com.square.square_project.employee.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -50,6 +51,7 @@ class EmployeeActivity : AppCompatActivity() {
         when (state) {
           is EmployeeState.Noop -> {}
           is EmployeeState.ListItem -> onListItemState(state = state)
+          is EmployeeState.EmptyState -> onEmptyState()
           is EmployeeState.ProgressVisibility -> onProgressVisibility(state = state)
         }
       }, {
@@ -85,6 +87,12 @@ class EmployeeActivity : AppCompatActivity() {
     adapter.items = state.employeeItems
     adapter.notifyDataSetChanged()
 
+    binding.employeeEmptyContainer.visibility = View.GONE
+    binding.employeeRefresh.isRefreshing = false
+  }
+
+  private fun onEmptyState() {
+    binding.employeeEmptyContainer.visibility = View.VISIBLE
     binding.employeeRefresh.isRefreshing = false
   }
 

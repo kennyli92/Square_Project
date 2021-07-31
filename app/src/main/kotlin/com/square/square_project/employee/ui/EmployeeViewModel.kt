@@ -107,55 +107,13 @@ class EmployeeViewModel @Inject constructor(
             )
           }
           is GetEmployeesResponse.NetworkError -> {
-            Observable.just(
-              StateEvent(
-                EmployeeState.Noop,
-                EmployeeEvent.Snackbar(
-                  vm = SnackbarModel(
-                    messageResId = R.string.get_employees_network_error,
-                    duration = Snackbar.LENGTH_LONG
-                  )
-                )
-              ),
-              StateEvent(
-                EmployeeState.ProgressVisibility(visibility = Visibility.GONE),
-                EmployeeEvent.Noop
-              )
-            )
+            getEmployeesErrorStateEvent(messageResId = R.string.get_employees_network_error)
           }
           is GetEmployeesResponse.NotFound -> {
-            Observable.just(
-              StateEvent(
-                EmployeeState.Noop,
-                EmployeeEvent.Snackbar(
-                  vm = SnackbarModel(
-                    messageResId = R.string.get_employees_not_found_error,
-                    duration = Snackbar.LENGTH_LONG
-                  )
-                )
-              ),
-              StateEvent(
-                EmployeeState.ProgressVisibility(visibility = Visibility.GONE),
-                EmployeeEvent.Noop
-              )
-            )
+            getEmployeesErrorStateEvent(messageResId = R.string.get_employees_not_found_error)
           }
           is GetEmployeesResponse.UnknownError -> {
-            Observable.just(
-              StateEvent(
-                EmployeeState.Noop,
-                EmployeeEvent.Snackbar(
-                  vm = SnackbarModel(
-                    messageResId = R.string.get_employees_unknown_error,
-                    duration = Snackbar.LENGTH_LONG
-                  )
-                )
-              ),
-              StateEvent(
-                EmployeeState.ProgressVisibility(visibility = Visibility.GONE),
-                EmployeeEvent.Noop
-              )
-            )
+            getEmployeesErrorStateEvent(messageResId = R.string.get_employees_unknown_error)
           }
         }
       }.startWith (
@@ -167,6 +125,26 @@ class EmployeeViewModel @Inject constructor(
             EmployeeEvent.Noop
           ))
       )
+  }
+
+  private fun getEmployeesErrorStateEvent(
+    messageResId: Int
+  ): Observable<StateEvent<EmployeeState, EmployeeEvent>> {
+    return Observable.just(
+      StateEvent(
+        EmployeeState.EmptyState,
+        EmployeeEvent.Snackbar(
+          vm = SnackbarModel(
+            messageResId = messageResId,
+            duration = Snackbar.LENGTH_LONG
+          )
+        )
+      ),
+      StateEvent(
+        EmployeeState.ProgressVisibility(visibility = Visibility.GONE),
+        EmployeeEvent.Noop
+      )
+    )
   }
 
   @VisibleForTesting

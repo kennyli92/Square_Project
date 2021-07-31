@@ -2,6 +2,7 @@
     <string name="app_name">Square_Project</string>
 
     <!-- Employee -->
+    <string name="employee_empty_state_message">Wow, where\'s everybody?!</string>
     <string name="get_employees_not_found_error">No employee data found at this time, please try again later</string>
     <string name="get_employees_network_error">Network error - unable to get employee data, please try again later</string>
     <string name="get_employees_unknown_error">Unknown error - unable to get employee data, please try again later</string>

@@ -8,6 +8,7 @@ sealed class EmployeeState {
   data class ListItem(
     val employeeItems: List<EmployeeItem>
   ) : EmployeeState()
+  object EmptyState : EmployeeState()
   data class ProgressVisibility(
     val visibility: Visibility
   ): EmployeeState()

@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/employee_image"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_outline_person"
         app:layout_constraintStart_toStartOf="parent"
