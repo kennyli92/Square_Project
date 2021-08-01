@@ -27,7 +27,8 @@ class EmployeeViewModel @Inject constructor(
   private val stateEventObs =
     PublishSubject.create<StateEvent<EmployeeState, EmployeeEvent>>().toSerialized()
 
-  private var employees: MutableList<Employee> = mutableListOf()
+  @VisibleForTesting
+  internal var employees: List<Employee> = emptyList()
 
   /**
    * emit State that should persist on screen upon foreground from backgrounding
@@ -89,7 +90,7 @@ class EmployeeViewModel @Inject constructor(
       .flatMapObservable { response ->
         when(response) {
           is GetEmployeesResponse.Employees -> {
-            employees = response.employees.toMutableList()
+            employees = response.employees
             Observable.just(
               StateEvent(
                 EmployeeState.ListItem(

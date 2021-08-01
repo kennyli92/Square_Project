@@ -3,11 +3,12 @@ package com.square.square_project
 import com.square.square_project.employee.model.Employee
 import com.square.square_project.employee.model.EmployeeType
 import com.square.square_project.employee.model.Employees
+import com.square.square_project.employee.ui.recyclerview.EmployeeItem
 
 object EmployeeDataProvider {
   val employee1 = Employee(
     uuid = "1",
-    fullName = "first employee",
+    fullName = "Zack Doe",
     emailAddress = "first@square.com",
     biography = "",
     photoUrlSmall = "first small url",
@@ -17,7 +18,7 @@ object EmployeeDataProvider {
   )
   val employee2 = Employee(
     uuid = "2",
-    fullName = "second employee",
+    fullName = "John Doe",
     emailAddress = "second@square.com",
     biography = "",
     photoUrlSmall = "second small url",
@@ -27,7 +28,7 @@ object EmployeeDataProvider {
   )
   val employee3 = Employee(
     uuid = "3",
-    fullName = "third employee",
+    fullName = "Jane Doe",
     emailAddress = "third@square.com",
     biography = "",
     photoUrlSmall = "third small url",
@@ -39,4 +40,21 @@ object EmployeeDataProvider {
   val employees = Employees(
     employees = employeeList
   )
+
+  val employeeItem1 = EmployeeItem(
+    imageUrl = "first small url",
+    fullName = "Zack Doe",
+    team = "team 1"
+  )
+  val employeeItem2 = EmployeeItem(
+    imageUrl = "second small url",
+    fullName = "John Doe",
+    team = "team 2"
+  )
+  val employeeItem3 = EmployeeItem(
+    imageUrl = "third small url",
+    fullName = "Jane Doe",
+    team = "team 3"
+  )
+  val employeeItemsSortedByFullname = listOf(employeeItem3, employeeItem2, employeeItem1)
 }
